@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h3>Javascript and jquery!!!</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-4">
+                <div class="form-group">
+                    <label class="alphaNumericLbl">Allow Alpha Numeric Text only:</label>
+                    <input type="text" value="" class="alphaNumeric form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="phoneLbl">Phone number validation with format:</label>
+                    <input type="text" value="" class="phone form-control" maxlength="14"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            console.log("Hello");
+            //Allow only Alpha Nemeric
+            // Reference Url: https://stackoverflow.com/questions/895659/how-do-i-block-or-restrict-special-characters-from-input-fields-with-jquery
+            $(".alphaNumeric").keypress(function (event) {
+                console.log(event.keyCode);
+                var character = String.fromCharCode(event.keyCode);
+                return isValid(character);
+            });
+
+            function isValid(str) {
+                return !/[~`!@#$%\^&*()+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+            }
+            phoneFormatter();
+        });
+        // https://jsfiddle.net/cruznunez/a4jbqqsv/
+        function phoneFormatter() {
+            $('.phone').on('input', function () {
+                var number = $(this).val().replace(/[^\d]/g, '')
+                if (number.length == 7) {
+                    number = number.replace(/(\d{3})(\d{4})/, "$1-$2");
+                } else if (number.length == 10) {
+                    number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+                }
+                $(this).val(number)
+            });
+        };
+    </script>
+</body>
+
+</html>
