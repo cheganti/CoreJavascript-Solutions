@@ -38,6 +38,18 @@
                 </div>
             </div>
         </div>
+        <p>On mouse over child set class to parent!!!</p>
+        <div>
+            <p>
+                $('div.Q10Desc').hover(
+                    function () {
+                        $("#" + $(this).parent().attr("id")).addClass('hover_border');
+                    },
+                    function () {
+                        $("#" + $(this).parent().attr("id")).removeClass('hover_border');
+                    });
+            </p>
+        </div>
     </div>
     <script>
         $(document).ready(function () {
